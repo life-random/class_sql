@@ -1,5 +1,5 @@
 -- DML 사용하기
--- SELECT * FROM student;
+-- 
 
 -- 데이터 추가 (INSERT) 한 건
 INSERT INTO student(student_id, name, grade, major, phone)
@@ -24,4 +24,22 @@ UPDATE student SET grade = 4 WHERE student_id = '1001';
 -- 삭제 질의어를 사용할 때도 반드시 WHERE절 두번 세번 확인하자.
 DELETE FROM student;
 -- 특이 사항. 삭제 쿼리는 없던 데이터 삭제 요청을 하더라도 오류가 아니다alter
-DELETE FROM student WHERE student_id = 1;
+DELETE FROM student WHERE student_id = 1004;
+DELETE FROM student WHERE grade = 2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
