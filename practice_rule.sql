@@ -15,6 +15,9 @@ select *
 from dept_manager;
 
 select *
+from dept_emp;
+
+select *
 from salaries;
 
 select *
@@ -29,3 +32,28 @@ where to_date != '9999-01-01';
 select *
 from employees
 where date_format(birth_date, '%m') = '09';
+
+
+-- 2026-09-02
+-- dept_emp 테이블에서 from_date가 2000년도 이상 이면서 to_date가 '9999-01-01'가 아닌 값을 출력하세요
+select *
+from dept_emp
+where from_date >= '2000-01-01'
+and to_date != '9999-01-01';
+
+create table employees_copy like employees;
+
+alter table employees_copy
+add column email varchar(50) default '이메일이 등록되지 않았습니다';
+
+select * from employees_copy;
+
+update employees_copy
+set hire_date = '1990-10-31'
+where gender = 'F';
+
+select *
+from employees_copy
+where first_name = 'Aleksandar'
+and hire_date > '1950-01-01'
+and  hire_date < '1950-12-31';
