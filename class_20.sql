@@ -43,3 +43,35 @@ from employees e left join employees m	-- 매니저 이름을 찾기 위한 사�
 on e.manager_id = m.employee_id
 left join employees m2
 on m.manager_id = m2.employee_id;
+
+-- 용도 2. 같은 테이블 안에서 다른 행을 비교할 수 있다
+-- 1. 같은 부서에서, 나보다 연봉이 높은 사람
+select e.employee_name as 직원,
+		e.salary as 내연봉,
+        h.employee_name as 더높은사람,
+        h.salary as 상대연봉
+from employees e join employees h
+	on e.department = h.department
+    and e.salary < h.salary
+order by e.employee_name, e.salary desc, h.salary;
+
+-- ON 조건을 두 개 써야 하는 이유
+-- 1. 만약 JOIN 연산에서 ON절리 없으면 --> 크로스 조인
+select *
+from employees e join employees m;
+-- on <-- 사용하지 않음
+
+-- 2-1. 부서 조건만 있으면
+SELECT e.employee_name AS 직원, h.employee_name AS 상대
+FROM employees e
+JOIN employees h ON e.department = h.department
+WHERE e.department = '개발'
+ORDER BY e.employee_name, h.employee_name;
+
+-- 2-2. on조건에서 연봉만 있는 경우 확인
+select e.*, h.employee_name
+from employees e join employees h
+	on e.salary < h.salary -- 부서 상관 없이 나보다 연봉 높은 사람
+where e.employee_name = '강도현'
+order by e.employee_name, e.salary desc, h.salary;
+

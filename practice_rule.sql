@@ -134,7 +134,21 @@ group by e.emp_no;
 -- on절 밑에 group by를 이용하면 구할 수 있습니다
 -- 예) group by 합계의 기준이 될 조건
 
+-- 2026-09-04
+-- dept_manager와 employees 테이블을 이용해서
+-- to_date와 from_date가 같은 사람의
+-- to_date, first_name, last_name을 출력하시오
+-- 조건) inner join과 self join 사용합니다
 
+select m1.to_date, e1.first_name, e1.last_name, 
+m2.to_date, e2.first_name, e2.last_name
+from dept_manager m1 join dept_manager m2
+on m1.to_date = m2.from_date
+join employees e1
+on m1.emp_no = e1.emp_no
+join employees e2
+on m2.emp_no = e2.emp_no
+order by m1.to_date;
 
 
 
